@@ -1,9 +1,8 @@
-import Tab from "./Tab";
+import Tab from "../Tabs/Tab";
 
-function TopTabs({ currentTab, handleTabSelection }) {
-  const tabs = ["Hey", "Hai", "Hou", "Hyo"];
+function TopTabs({ currentTabIndex, handleTabSelection, tabs }) {
   const tabElements = tabs.map((tab, i) => {
-    const check = currentTab === i;
+    const check = currentTabIndex === i;
     return (
       <Tab
         key={i}
