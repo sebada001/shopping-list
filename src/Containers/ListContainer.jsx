@@ -4,18 +4,23 @@ import { useState } from "react";
 
 function ListContainer() {
   const tabs = ["Champs", "Runes", "Items", "Overview"];
+  const [currentChamp, setCurrentChamp] = useState(null);
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   const handleTabSelection = (sel) => setCurrentTabIndex(sel);
   const currentTab = () => tabs[currentTabIndex];
 
   return (
-    <div className="flex h-4/5 w-9/12 flex-col rounded border border-gray-300 bg-sky-200">
+    <div className="flex w-9/12 flex-col rounded border border-gray-300 bg-sky-200">
       <TopTabs
         currentTabIndex={currentTabIndex}
         handleTabSelection={handleTabSelection}
         tabs={tabs}
       />
-      <ListBody currentTab={currentTab} />
+      <ListBody
+        currentTab={currentTab}
+        setCurrentChamp={setCurrentChamp}
+        currentChamp={currentChamp}
+      />
     </div>
   );
 }
