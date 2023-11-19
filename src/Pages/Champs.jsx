@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ChampCard from "./ChampCards/ChampCard";
+import ChampCard from "./Cards/ChampCard";
 
 function Champs({ setCurrentChamp, currentChamp }) {
   const [champsData, setChampsData] = useState(null);
