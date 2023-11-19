@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { cleanString } from "./Helpers";
+import { cleanString } from "../Helpers";
 
 function Overview({ currentChamp }) {
   const champName = currentChamp?.name;
