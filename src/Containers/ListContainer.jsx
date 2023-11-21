@@ -4,7 +4,6 @@ import { useState } from "react";
 
 function ListContainer() {
   const tabs = ["Champs", "Runes", "Items", "Overview"];
-  const [currentChamp, setCurrentChamp] = useState(null);
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   const handleTabSelection = (sel) => setCurrentTabIndex(sel);
   const currentTab = () => tabs[currentTabIndex];
@@ -16,11 +15,7 @@ function ListContainer() {
         handleTabSelection={handleTabSelection}
         tabs={tabs}
       />
-      <ListBody
-        currentTab={currentTab}
-        setCurrentChamp={setCurrentChamp}
-        currentChamp={currentChamp}
-      />
+      <ListBody currentTab={currentTab} />
     </div>
   );
 }

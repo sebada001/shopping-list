@@ -4,9 +4,11 @@ import { create } from "zustand";
 
 const useChampsStore = create((set) => ({
   loading: true,
-  setLoading: (val) => set({ loading: val }),
+  setLoading: (val) => set(() => ({ loading: val })),
   champsData: null,
-  setChampsData: (val) => set({ champsData: val }),
+  setChampsData: (val) => set(() => ({ champsData: val })),
+  currentChamp: null,
+  setCurrentChamp: (val) => set(() => ({ currentChamp: val })),
 }));
 
 function App() {
@@ -28,16 +30,20 @@ function App() {
       })
       .then((response) => setChampsData(response.data))
       .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   if (error) return <p>Error, data not loading...</p>;
   if (loading) return <p>Loading...</p>;
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-items-center bg-gradient-to-br from-slate-800 to-sky-800 text-center selection:bg-green-900">
-      <h1 className="p-9 text-7xl text-sky-300">LoL Build Planner</h1>
-      <ListContainer />
-    </div>
+    (loading && <div>'loading</div>) || (
+      <div className="flex min-h-screen w-full flex-col items-center justify-items-center bg-gradient-to-br from-slate-800 to-sky-800 text-center selection:bg-green-900">
+        <h1 className="p-9 text-7xl text-sky-300">LoL Build Planner</h1>
+        <ListContainer />
+      </div>
+    )
   );
 }
 

@@ -38,7 +38,7 @@ function Items() {
                 key={each}
                 itemName={itemsData[each].name}
                 itemCode={each}
-                styling="rounded-lg h-auto w-1/12 bg-slate-800 text-sky-200 m-2 hover:cursor-pointer relative"
+                styling="rounded-lg h-auto w-1/12 bg-slate-800 text-sky-200 m-1 hover:cursor-pointer relative"
                 item={itemsData[each]}
               />
             )

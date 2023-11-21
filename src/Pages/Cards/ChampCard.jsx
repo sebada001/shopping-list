@@ -1,14 +1,11 @@
-function ChampCard({
-  champName,
-  styling,
-  champ,
-  setCurrentChamp,
-  currentChamp,
-}) {
-  const imgAddress = `https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${champName}.png`;
+import { useChampsStore } from "../../App";
 
+function ChampCard({ champName, styling, champ }) {
+  const imgAddress = `https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${champName}.png`;
   const styleIfNotChosen = "h-full w-full grayscale rounded-lg";
   const styleIfChosen = "h-full w-full animate-pulse rounded-lg";
+  const setCurrentChamp = useChampsStore((state) => state.setCurrentChamp);
+  const currentChamp = useChampsStore((state) => state.currentChamp);
   return (
     <div
       className={styling}

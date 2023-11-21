@@ -3,14 +3,12 @@ import Items from "../Pages/Items";
 import Overview from "../Pages/Overview";
 import Runes from "../Pages/Runes";
 
-function ListBody({ currentTab, setCurrentChamp, currentChamp }) {
+function ListBody({ currentTab }) {
   const tabs = {
-    Champs: (
-      <Champs setCurrentChamp={setCurrentChamp} currentChamp={currentChamp} />
-    ),
+    Champs: <Champs />,
     Runes: <Runes />,
     Items: <Items />,
-    Overview: <Overview currentChamp={currentChamp} />,
+    Overview: <Overview />,
   };
   const tab = tabs[`${currentTab()}`];
   return tab;
