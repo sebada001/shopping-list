@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
 import ListContainer from "./Containers/ListContainer";
-import { ApiChamp, ApiItem } from "./ApiCalls";
+import { ApiChamp, ApiItem, ApiRunes } from "./ApiCalls";
 import { create } from "zustand";
+
+const useRunesStore = create((set) => ({
+  loading: true,
+  setLoading: (val) => set(() => ({ loading: val })),
+  runesData: null,
+  setRunesData: (val) => set(() => ({ runesData: val })),
+}));
 
 const useChampsStore = create((set) => ({
   loading: true,
@@ -46,6 +53,7 @@ function App() {
   const setItemsData = useItemsStore((state) => state.setItemsData);
   const sortItems = useItemsStore((state) => state.sortItems);
   const setCurrentChamp = useChampsStore((state) => state.setCurrentChamp);
+  const setRunesData = useRunesStore((state) => state.setRunesData);
 
   useEffect(async () => {
     const effectChampsData = await ApiChamp();
@@ -61,6 +69,11 @@ function App() {
     setLoadingItems(false);
   }, []);
 
+  useEffect(async () => {
+    const effectRunesData = await ApiRunes();
+    setRunesData(effectRunesData);
+  }, []);
+
   if (loadingChamps || loadingItems) return <p>Loading...</p>;
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-items-center bg-gradient-to-br from-slate-800 to-sky-800 text-center selection:bg-green-900">
@@ -70,4 +83,4 @@ function App() {
   );
 }
 
-export { App, useChampsStore, useItemsStore };
+export { App, useChampsStore, useItemsStore, useRunesStore };

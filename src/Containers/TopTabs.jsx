@@ -15,7 +15,7 @@ function TopTabs({ currentTabIndex, handleTabSelection, tabs }) {
   });
 
   return (
-    <div className="flex max-h-20 w-full flex-1 flex-row items-center justify-center bg-slate-800 text-2xl text-sky-100">
+    <div className="flex max-h-20 w-full flex-1 flex-row items-center justify-center bg-slate-800  text-2xl text-sky-100">
       {tabElements}
     </div>
   );

@@ -32,4 +32,10 @@ async function ApiItem() {
   return arr;
 }
 
-export { ApiChamp, ApiItem };
+async function ApiRunes() {
+  let allData = await fetch("./data/runesReforged.json");
+  let response = await allData.json();
+  return response;
+}
+
+export { ApiChamp, ApiItem, ApiRunes };
