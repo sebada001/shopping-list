@@ -3,14 +3,13 @@ import { useItemsStore } from "../../App";
 function ItemCard({ styling, itemName, itemCode, item }) {
   const imgAddress = `https://ddragon.leagueoflegends.com/cdn/13.22.1/img/item/${itemCode}.png`;
   const styleIfNotChosen = "h-full w-full grayscale rounded-lg";
-  const styleIfChosen = "h-full w-full animate-pulse rounded-lg";
+  const styleIfChosen = "h-full w-full rounded-lg";
   const addSelectedItem = useItemsStore((state) => state.addSelectedItem);
   const removeSelectedItem = useItemsStore((state) => state.removeSelectedItem);
   const selectedItems = useItemsStore((state) => state.selectedItems);
 
   const handleClick = (it1) => {
     checkIncludedItem(it1) ? removeSelectedItem(it1) : addSelectedItem(it1);
-    console.log(it1.requiredChampion);
   };
   const checkIncludedItem = (it2) => {
     if (selectedItems.some((it3) => it3.name === it2.name)) {

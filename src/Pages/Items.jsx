@@ -9,7 +9,7 @@ function Items() {
     <>
       <ItemCategories itemsData={itemsData} />
       <div className="m-4 flex flex-1 flex-row flex-wrap justify-evenly">
-        {itemsData.map((each, i) => {
+        {/* {itemsData.map((each) => {
           return (
             <ItemCard
               key={each.id}
@@ -19,7 +19,7 @@ function Items() {
               item={each}
             />
           );
-        })}
+        })} */}
       </div>
     </>
   );
