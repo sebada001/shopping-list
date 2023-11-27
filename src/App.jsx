@@ -8,7 +8,22 @@ const useRunesStore = create((set) => ({
   setLoading: (val) => set(() => ({ loading: val })),
   runesData: null,
   setRunesData: (val) => set(() => ({ runesData: val })),
+  selectedTree: null,
+  setSelectedTree: (val) => set(() => ({ selectedTree: val })),
+  selectedRunes: [null, null, null, null],
+  setSelectedRune: (val, index) =>
+    set((data) => ({
+      selectedRunes: swapInPlace(val, index, data.selectedRunes),
+    })),
 }));
+
+// [...data.selectedRunes[index] = val];
+
+function swapInPlace(val, index, array) {
+  let copy = [...array];
+  copy[index] = val;
+  return copy;
+}
 
 const useChampsStore = create((set) => ({
   loading: true,
