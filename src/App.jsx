@@ -15,9 +15,9 @@ const useRunesStore = create((set) => ({
     set((data) => ({
       selectedRunes: swapInPlace(val, index, data.selectedRunes),
     })),
+  clearSelectedRunes: () =>
+    set(() => ({ selectedRunes: [null, null, null, null] })),
 }));
-
-// [...data.selectedRunes[index] = val];
 
 function swapInPlace(val, index, array) {
   let copy = [...array];
