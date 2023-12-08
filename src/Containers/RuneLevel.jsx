@@ -7,7 +7,6 @@ function RuneLevel({
   level,
   handleHover,
   handleLeave,
-  description,
 }) {
   return (
     <div className=" m-4 flex w-full justify-evenly border-t-2 border-sky-200 pt-8">
@@ -21,7 +20,6 @@ function RuneLevel({
             ind={ind}
             handleHover={handleHover}
             handleLeave={handleLeave}
-            description={description}
           />
         );
       })}

@@ -1,4 +1,5 @@
 import { useRunesStore } from "../../App";
+import { useRef } from "react";
 function RuneCard({
   rune,
   handleClickRune,
@@ -6,8 +7,8 @@ function RuneCard({
   ind,
   handleHover,
   handleLeave,
-  description,
 }) {
+  const divRef = useRef();
   const styleIfNotChosen =
     "w-1/5 rounded-lg hover:cursor-pointer grayscale relative";
   const styleIfChosen = "h-full w-1/5 rounded-lg hover:cursor-pointer";
@@ -16,6 +17,7 @@ function RuneCard({
 
   return (
     <div
+      ref={divRef}
       className={chosen ? styleIfChosen : styleIfNotChosen}
       onMouseOver={(e) => handleHover(e, rune.shortDesc)}
       onMouseLeave={handleLeave}

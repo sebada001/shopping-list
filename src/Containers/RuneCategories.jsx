@@ -7,7 +7,6 @@ function RuneCategories({
   handleClickRune,
   handleHover,
   handleLeave,
-  description,
 }) {
   const runesLevels = ["0", "1", "2", "3"];
   return (
@@ -31,7 +30,6 @@ function RuneCategories({
               handleClickRune={handleClickRune}
               handleHover={handleHover}
               handleLeave={handleLeave}
-              description={description}
             />
           );
         })}

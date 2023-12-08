@@ -1,18 +1,33 @@
 import { useRunesStore } from "../App";
 import { RuneCategories } from "../Containers/RuneCategories";
-import { useState } from "react";
+import { useRef } from "react";
+
+function cleanAPIString(str) {
+  const replacedDesc = str.replaceAll("<b>", "").replaceAll("</b>", "");
+  const splitDesc = replacedDesc.split(" ");
+
+  const filteredDesc = splitDesc
+    .filter((ea) => !ea.includes("<") && !ea.includes("="))
+    .join(" ");
+  return filteredDesc[0].toUpperCase() + filteredDesc.slice(1);
+}
 
 function Runes() {
-  const [description, setDescription] = useState("");
+  const descriptionContainer = useRef();
+
   const handleHover = (e, desc) => {
-    console.log(e.target);
-    const height = e.target.clientHeight;
-    const width = e.target.clientWidth;
-    setDescription(
-      <div className="absolute left-8 top-8 w-full bg-slate-400">{desc}</div>
-    );
+    const curr = descriptionContainer.current;
+    const cleanDesc = cleanAPIString(desc);
+    curr.textContent = cleanDesc;
+    curr.style.display = "flex";
+    const rec2 = [e.pageX, e.pageY + 50];
+    const classVar = [`${rec2[0]}px`, `${rec2[1]}px`];
+    descriptionContainer.current.style.left = classVar[0];
+    descriptionContainer.current.style.top = classVar[1];
   };
-  const handleLeave = () => setDescription("");
+  const handleLeave = () =>
+    (descriptionContainer.current.style.display = "none");
+
   const runesData = useRunesStore((data) => data.runesData);
   const setTree = useRunesStore((data) => data.setSelectedTree);
   const setRune = useRunesStore((data) => data.setSelectedRune);
@@ -28,12 +43,16 @@ function Runes() {
 
   return (
     <div className="m-4 flex flex-1 flex-wrap justify-evenly">
-      {description}
+      <div
+        className="absolute z-50 w-1/6 rounded-md bg-slate-900 p-2 text-white"
+        ref={descriptionContainer}
+      >
+        Hello over here
+      </div>
       {runesData.map((eachCategory) => (
         <RuneCategories
           handleHover={handleHover}
           handleLeave={handleLeave}
-          description={description}
           category={eachCategory}
           runesData={runesData}
           handleClickRune={handleClickRune}
